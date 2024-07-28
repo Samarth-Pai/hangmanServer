@@ -35,7 +35,7 @@ class timeModel(BaseModel):
 
 @app.get("/")
 def home():
-    return "Hello from hangman server!"
+    return "Hello from the hangman server!"
     
 @app.post("/createMatchRoom")
 def createMatchRoom(roomDetails: matchRoomModel):
