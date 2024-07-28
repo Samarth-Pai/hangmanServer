@@ -33,11 +33,7 @@ class timeModel(BaseModel):
     playerNo: int
     timing: float
     
-
-@app.get("/")
-def home():
-    return "Waked up glitch"
-
+    
 @app.post("/createMatchRoom")
 def createMatchRoom(roomDetails: matchRoomModel):
     matchRoom.insert_one(roomDetails.model_dump())
@@ -49,7 +45,8 @@ def getMatchStatus(roomID: str):
 
 @app.get("/findMatchRoom/{mode}")
 def findMatchRoom(mode: str):
-    if status:=matchRoom.find_one({"mode":mode,"matchFound":False}):
+    status = matchRoom.find_one({"mode":mode,"matchFound":False})
+    if status:
         return status["roomID"]
     
 @app.put("/declareMatch/{roomID}")
