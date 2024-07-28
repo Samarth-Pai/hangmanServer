@@ -1,15 +1,17 @@
 from fastapi import FastAPI
 from pymongo import MongoClient
-from pydantic import BaseModel                                        
+from pydantic import BaseModel
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+MONGODB_STR = os.getenv("MONGODB_STR")
 
 app = FastAPI(debug=True)
-
-client = MongoClient("mongodb://localhost:27017/")
+client = MongoClient(MONGODB_STR)
 db = client["hangmanServer"]
 matchRoom = db["matchRoom"]
 playRoom = db["playRoom"]
-authorized = False
-authTokens = []
 
 class matchRoomModel(BaseModel):
     mode: str
