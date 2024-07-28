@@ -33,7 +33,11 @@ class timeModel(BaseModel):
     playerNo: int
     timing: float
     
-    
+
+@app.get("/")
+def home():
+    return "Waked up glitch"
+
 @app.post("/createMatchRoom")
 def createMatchRoom(roomDetails: matchRoomModel):
     matchRoom.insert_one(roomDetails.model_dump())
